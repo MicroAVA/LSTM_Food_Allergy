@@ -12,5 +12,6 @@ install the package as suggested
 # run
 
 conda activate tensorflow
+
 bash lstm.sh
 
