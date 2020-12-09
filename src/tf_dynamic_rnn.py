@@ -193,8 +193,11 @@ if __name__ == '__main__':
             lstm_cell = tf.contrib.rnn.GRUCell(n_hidden)
         elif cell_type == 'on-lstm':
             lstm_cell = oredered_lstm.ON_LSTM(num_units=n_hidden, chunk_size=2)
-        else:
-            lstm_cell = tf.contrib.rnn.BasicLSTMCell(n_hidden)
+        elif cell_type == 'lstm-attention':
+            drop = tf.contrib.rnn.DropoutWrapper(lstm_cell)
+            cell = tf.contrib.rnn.AttentionCellWrapper(drop, attn_length=20, state_is_tuple=True)
+            lstm_cell = tf.contrib.rnn.MultiRNNCell([cell] * 1)
+            # lstm_cell = tf.contrib.rnn.BasicLSTMCell(n_hidden)
 
         # Get lstm cell output, providing 'sequence_length' will perform dynamic
         # calculation.

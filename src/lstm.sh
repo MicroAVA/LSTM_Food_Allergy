@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 source ~/anaconda3/etc/profile.d/conda.sh
-conda activate tensorflow
+conda activate tf_v1
 declare -a databases=("latent-40" "deep_forest" "lasso" "mrmr" "rfe" "raw")
-declare -a methods=("lstm" "gru" "on-lstm")
+declare -a methods=("lstm" "gru" "on-lstm" "lstm-attention")
 for database in "${databases[@]}";do
   echo ${database}
   for method in "${methods[@]}";do
